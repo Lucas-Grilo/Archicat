@@ -29,9 +29,6 @@ console.log('Variáveis de ambiente carregadas:');
 console.log('EMAIL_PASSWORD definido:', process.env.EMAIL_PASSWORD ? 'Sim' : 'Não');
 console.log('MERCADO_PAGO_ACCESS_TOKEN definido:', process.env.MERCADO_PAGO_ACCESS_TOKEN ? 'Sim' : 'Não');
 
-const express = require('express');
-const cors = require('cors');
-
 const app = express();
 
 // Middlewares
@@ -398,3 +395,4 @@ app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
     console.log('Ambiente:', process.env.NODE_ENV || 'desenvolvimento');
 });
+console.log("Ambiente:", process.env.NODE_ENV);
