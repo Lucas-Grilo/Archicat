@@ -84,10 +84,17 @@ async function carregarMiniaturasDoBanco() {
   const maxTentativas = 3;
   const tempoEspera = 1000; // 1 segundo entre tentativas
   
+  // URL do servidor - usa o Render em produção ou localhost em desenvolvimento
+  const serverUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+    ? 'http://localhost:3000/api/miniaturas'
+    : 'https://archicat-backend.onrender.com/api/miniaturas';
+  
+  console.log('Usando URL do servidor:', serverUrl);
+  
   while (tentativas < maxTentativas) {
     try {
       console.log(`Tentativa ${tentativas + 1} de ${maxTentativas} para carregar miniaturas...`);
-      const response = await fetch('http://localhost:3000/api/miniaturas');
+      const response = await fetch(serverUrl);
       console.log('Resposta recebida:', response.status, response.statusText);
       
       if (!response.ok) {
@@ -895,29 +902,58 @@ async function renderizarMiniaturas() {
         console.warn(`Nome de arquivo vazio para miniatura ${miniatura.nome}, usando fallback: ${nomeArquivo}`);
       }
       
-      // Definir o caminho da imagem
-      img.src = `img/${nomeArquivo}`;
+      // Definir o caminho da imagem baseado no ambiente
+      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const baseUrl = isLocalhost ? '' : 'https://archicat-backend.onrender.com';
+      
+      // Usar caminho relativo em localhost e absoluto em produção
+      img.src = isLocalhost ? `img/${nomeArquivo}` : `${baseUrl}/pagina2/img/${nomeArquivo}`;
       img.className = 'thumbnail';
+      
+      console.log(`Carregando miniatura de: ${img.src}`);
       
       // Adicionar evento para tratar erros de carregamento da imagem
       img.onerror = function() {
         console.error(`Erro ao carregar imagem da miniatura: ${nomeArquivo}`);
         
+        // Determinar a URL base com base no ambiente
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const baseUrl = isLocalhost ? '' : 'https://archicat-backend.onrender.com';
+        
         // Tentar caminhos alternativos
         if (this.src.includes('img/')) {
           // Tentar caminho relativo à raiz
-          const alternativePath = `../img/${nomeArquivo}`;
+          let alternativePath;
+          if (isLocalhost) {
+            alternativePath = `../img/${nomeArquivo}`;
+          } else {
+            // Em produção, tentar o caminho absoluto
+            alternativePath = `${baseUrl}/img/${nomeArquivo}`;
+          }
           console.log(`Tentando caminho alternativo: ${alternativePath}`);
           this.src = alternativePath;
           
           // Adicionar um segundo handler de erro para o caminho alternativo
           this.onerror = function() {
-            console.error(`Falha no caminho alternativo, usando ícone padrão`);
-            this.src = 'img/icon2.ico';
-            this.alt = 'Imagem não disponível';
+            console.error(`Falha no caminho alternativo, tentando caminho completo`);
+            // Tentar um terceiro caminho com URL completa
+            const fullPath = isLocalhost 
+              ? `http://localhost:3000/img/${nomeArquivo}` 
+              : `${baseUrl}/pagina2/img/${nomeArquivo}`;
+            console.log(`Tentando caminho completo: ${fullPath}`);
+            this.src = fullPath;
+            
+            // Último handler de erro
+            this.onerror = function() {
+              console.error(`Todas as tentativas falharam, usando ícone padrão`);
+              this.src = isLocalhost ? 'img/icon2.ico' : `${baseUrl}/img/icon2.ico`;
+              this.alt = 'Imagem não disponível';
+            };
           };
         } else {
-          this.src = 'img/icon2.ico';
+          const iconPath = isLocalhost ? 'img/icon2.ico' : `${baseUrl}/img/icon2.ico`;
+          console.log(`Usando ícone padrão: ${iconPath}`);
+          this.src = iconPath;
           this.alt = 'Imagem não disponível';
         }
       };
@@ -1162,8 +1198,15 @@ baixarImagemButton.addEventListener("click", function () {
         link.download = "imagem_da_tela.png";
         link.click();
         
+        // Determinar a URL do servidor com base no ambiente
+        const serverUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+          ? 'http://localhost:3000/api/send-image'
+          : 'https://archicat-backend.onrender.com/api/send-image';
+        
+        console.log('Enviando imagem para:', serverUrl);
+        
         // Enviar a imagem para o servidor para envio por e-mail
-        fetch('http://localhost:3000/api/send-image', {
+        fetch(serverUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -1,5 +1,13 @@
 /// Script para iniciar o servidor automaticamente e garantir que as miniaturas sejam carregadas corretamente
 
+// Determinar a URL base do servidor com base no ambiente
+const getServerUrl = () => {
+    // Se estiver em localhost, use localhost, caso contrário use o Render
+    return (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost:3000/api'
+        : 'https://archicat-backend.onrender.com/api';
+};
+
 /**
  * Função para iniciar o servidor backend
  */
@@ -8,7 +16,7 @@ async function iniciarServidor() {
         console.log('Tentando iniciar o servidor...');
         
         // Usando a API Fetch para fazer uma requisição ao endpoint que inicia o servidor
-        const response = await fetch('http://localhost:3000/api/iniciar-servidor', {
+        const response = await fetch(`${getServerUrl()}/iniciar-servidor`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -36,7 +44,7 @@ async function reiniciarServidorCompleto() {
         console.log('Tentando reiniciar o servidor e limpar cache...');
         
         // Usando a API Fetch para fazer uma requisição ao endpoint que reinicia o servidor
-        const response = await fetch('http://localhost:3000/api/reiniciar-servidor', {
+        const response = await fetch(`${getServerUrl()}/reiniciar-servidor`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -66,7 +74,7 @@ async function verificarMiniaturas() {
         console.log('Verificando se as miniaturas foram carregadas...');
         
         // Tentar buscar as miniaturas do servidor com o endereço completo
-        const response = await fetch('http://localhost:3000/api/miniaturas');
+        const response = await fetch(`${getServerUrl()}/miniaturas`);
         
         if (!response.ok) {
             throw new Error(`Erro ao buscar miniaturas: ${response.status} ${response.statusText}`);
