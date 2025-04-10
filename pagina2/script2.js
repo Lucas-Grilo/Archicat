@@ -850,7 +850,7 @@ async function renderizarMiniaturas() {
   }
   
   // Limpar o container antes de adicionar novas miniaturas
-  miniaturasContainer.innerHTML = '';
+  miniaturasContainer.innerHTML = '<div class="miniatura-mensagem">Carregando miniaturas...</div>';
   
   try {
     console.log('Iniciando renderização de miniaturas...');
@@ -858,9 +858,13 @@ async function renderizarMiniaturas() {
     const miniaturas = await carregarMiniaturasDoBanco();
     console.log('Miniaturas obtidas para renderização:', miniaturas);
     
-    // Se não houver miniaturas, não mostrar mensagem de erro
+    // Limpar a mensagem de carregamento
+    miniaturasContainer.innerHTML = '';
+    
+    // Se não houver miniaturas, mostrar mensagem informativa
     if (!miniaturas || miniaturas.length === 0) {
       console.warn('Nenhuma miniatura encontrada para renderizar');
+      miniaturasContainer.innerHTML = '<div class="miniatura-mensagem">Não foi possível carregar as miniaturas. Verifique se o servidor está em execução.</div>';
       return;
     }
     
@@ -904,10 +908,9 @@ async function renderizarMiniaturas() {
       
       // Definir o caminho da imagem baseado no ambiente
       const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      const baseUrl = isLocalhost ? '' : 'https://archicat-backend.onrender.com';
       
       // Usar caminho relativo em localhost e absoluto em produção
-      img.src = isLocalhost ? `img/${nomeArquivo}` : `${baseUrl}/pagina2/img/${nomeArquivo}`;
+      img.src = `img/${nomeArquivo}`;
       img.className = 'thumbnail';
       
       console.log(`Carregando miniatura de: ${img.src}`);
@@ -915,51 +918,12 @@ async function renderizarMiniaturas() {
       // Adicionar evento para tratar erros de carregamento da imagem
       img.onerror = function() {
         console.error(`Erro ao carregar imagem da miniatura: ${nomeArquivo}`);
-        
-        // Determinar a URL base com base no ambiente
-        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const baseUrl = isLocalhost ? '' : 'https://archicat-backend.onrender.com';
-        
-        // Tentar caminhos alternativos
-        if (this.src.includes('img/')) {
-          // Tentar caminho relativo à raiz
-          let alternativePath;
-          if (isLocalhost) {
-            alternativePath = `../img/${nomeArquivo}`;
-          } else {
-            // Em produção, tentar o caminho absoluto
-            alternativePath = `${baseUrl}/img/${nomeArquivo}`;
-          }
-          console.log(`Tentando caminho alternativo: ${alternativePath}`);
-          this.src = alternativePath;
-          
-          // Adicionar um segundo handler de erro para o caminho alternativo
-          this.onerror = function() {
-            console.error(`Falha no caminho alternativo, tentando caminho completo`);
-            // Tentar um terceiro caminho com URL completa
-            const fullPath = isLocalhost 
-              ? `http://localhost:3000/img/${nomeArquivo}` 
-              : `${baseUrl}/pagina2/img/${nomeArquivo}`;
-            console.log(`Tentando caminho completo: ${fullPath}`);
-            this.src = fullPath;
-            
-            // Último handler de erro
-            this.onerror = function() {
-              console.error(`Todas as tentativas falharam, usando ícone padrão`);
-              this.src = isLocalhost ? 'img/icon2.ico' : `${baseUrl}/img/icon2.ico`;
-              this.alt = 'Imagem não disponível';
-            };
-          };
-        } else {
-          const iconPath = isLocalhost ? 'img/icon2.ico' : `${baseUrl}/img/icon2.ico`;
-          console.log(`Usando ícone padrão: ${iconPath}`);
-          this.src = iconPath;
-          this.alt = 'Imagem não disponível';
-        }
+        this.src = 'img/icon2.ico';
+        this.alt = 'Imagem não disponível';
       };
       
       // Garantir que o preço seja um número antes de usar toString() e toFixed()
-      const preco = typeof miniatura.preco === 'number' ? miniatura.preco : parseFloat(miniatura.preco);
+      const preco = typeof miniatura.preco === 'number' ? miniatura.preco : parseFloat(miniatura.preco.replace(',', '.'));
       
       // Verificar se o preço é um número válido após a conversão
       if (isNaN(preco)) {
@@ -1027,7 +991,7 @@ async function renderizarMiniaturas() {
         if (isImageLoaded) {
           setImage(this.src, this.getAttribute('data-value'));
         } else {
-          console.log('Não é possível usar miniaturas sem uma imagem de fundo');
+          alert('Carregue uma imagem antes de selecionar uma miniatura!');
         }
       };
       
@@ -1047,7 +1011,7 @@ async function renderizarMiniaturas() {
         if (miniatura.preco === null || miniatura.preco === undefined || miniatura.preco === 0) {
           label.innerHTML = `<span class="miniatura-nome">${miniatura.nome}</span><span class="miniatura-preco">Grátis</span>`;
         } else {
-          label.innerHTML = `<span class="miniatura-nome">${miniatura.nome}</span><span class="miniatura-preco">R$ ${miniatura.preco.toFixed(2)}</span>`;
+          label.innerHTML = `<span class="miniatura-nome">${miniatura.nome}</span><span class="miniatura-preco">R$ ${preco.toFixed(2)}</span>`;
         }
         miniaturaContainer.appendChild(label);
       }
@@ -1069,9 +1033,17 @@ async function renderizarMiniaturas() {
       thumb.classList.add("disabled");
     });
     
+    // Se já tiver uma imagem carregada, habilitar as miniaturas
+    if (isImageLoaded) {
+      thumbnailsEnabled = true;
+      thumbnails.forEach((thumb) => {
+        thumb.classList.remove("disabled");
+      });
+    }
+    
   } catch (error) {
     console.error('Erro ao renderizar miniaturas:', error);
-    // Não mostrar mensagem de erro no container
+    miniaturasContainer.innerHTML = `<div class="miniatura-mensagem">Erro ao carregar miniaturas: ${error.message}</div>`;
   }
 }
 
