@@ -1,9 +1,18 @@
 // Rotas para gerenciar as miniaturas
 import express from 'express';
 import MiniaturaModel from '../models/miniatura.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const router = express.Router();
 const miniaturaModel = new MiniaturaModel();
+
+// Obter o diretório atual
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Caminho para a pasta de imagens
+const imgPath = path.join(__dirname, '..', '..', 'pagina2', 'img');
 
 // Rota para obter todas as miniaturas
 router.get('/miniaturas', async (req, res) => {
@@ -97,7 +106,85 @@ router.post('/miniaturas-email', async (req, res) => {
       }
     }
     
-    // Calcular o valor total
+    // Rota para servir as imagens das miniaturas
+router.get('/miniaturas/img/:filename', (req, res) => {
+  try {
+    const filename = req.params.filename;
+    const filePath = path.join(imgPath, filename);
+    
+    // Verificar se o arquivo existe
+    const fs = require('fs');
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({
+        error: 'Imagem não encontrada',
+        details: `Não foi encontrada imagem com nome ${filename}`
+      });
+    }
+    
+    // Enviar o arquivo
+    res.sendFile(filePath);
+  } catch (error) {
+    console.error(`Erro ao buscar imagem:`, error);
+    res.status(500).json({
+      error: 'Erro ao buscar imagem',
+      details: error.message
+    });
+  }
+});
+
+// Rota para servir as imagens das miniaturas
+router.get('/miniaturas/img/:filename', (req, res) => {
+  try {
+    const filename = req.params.filename;
+    const filePath = path.join(imgPath, filename);
+    
+    // Verificar se o arquivo existe
+    const fs = require('fs');
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({
+        error: 'Imagem não encontrada',
+        details: `Não foi encontrada imagem com nome ${filename}`
+      });
+    }
+    
+    // Enviar o arquivo
+    res.sendFile(filePath);
+  } catch (error) {
+    console.error(`Erro ao buscar imagem:`, error);
+    res.status(500).json({
+      error: 'Erro ao buscar imagem',
+      details: error.message
+    });
+  }
+});
+
+// Rota para servir as imagens das miniaturas
+router.get('/miniaturas/img/:filename', (req, res) => {
+  try {
+    const filename = req.params.filename;
+    const filePath = path.join(imgPath, filename);
+    
+    // Verificar se o arquivo existe
+    const fs = require('fs');
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({
+        error: 'Imagem não encontrada',
+        details: `Não foi encontrada imagem com nome ${filename}`
+      });
+    }
+    
+    // Enviar o arquivo
+    res.sendFile(filePath);
+  } catch (error) {
+    console.error(`Erro ao buscar imagem:`, error);
+    res.status(500).json({
+      error: 'Erro ao buscar imagem',
+      details: error.message
+    });
+  }
+});
+
+// Calcular o valor total
     const valorTotal = miniaturasInfo.reduce((total, miniatura) => total + miniatura.preco, 0);
     
     res.json({
