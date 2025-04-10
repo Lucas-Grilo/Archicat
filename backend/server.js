@@ -119,7 +119,6 @@ app.post('/process-pix', async (req, res) => {
     }
 });
 
-// Configuração do transporter do Nodemailer
 // Verificar se a senha do e-mail está definida
 if (!process.env.EMAIL_PASSWORD) {
     console.error('ERRO: Senha do e-mail não encontrada no arquivo .env');
