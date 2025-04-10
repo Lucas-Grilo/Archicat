@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArchiCat</title>
+
+  <!-- Definindo o favicon -->
+  <link rel="shortcut icon" href="img/icon2.ico">
+
+  <link rel="stylesheet" href="style2.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+  <div class="top-rectangle">
+    <img src="img/logo1.png" alt="Logo" class="logo-left">
+    <h1 class="top-text">Projete o espaço para seu gato</h1>
+  </div>
+
+  <div class="menu">
+    <a href="../Menu/Quem somos/quemSomos.html"> Quem somos </a>
+    <a href="../Menu/Tutoriais/tutoriais.html"> Tutoriais </a>
+    <a href="../Menu/Contato/contato.html"> Contato </a>
+    <a href="../index.html"> Início </a>
+  </div>
+
+  <div class="main-container">
+    <div class="screen-container">
+      <div class="screen" id="screenContainer">
+        <h2 id="text">Carregue uma Imagem</h2>
+        <input type="file" id="inputImage" accept="image/*">
+        <div class="upload-container">
+          <button class="new-upload" id="newUpload">Carregar nova imagem</button>
+          <img src="img/lixo.png" alt="Imagem de Lixo" class="fixed-image" id="lixoImage" style="display: none;">
+        </div>
+        <div class="rotate-buttons-container" style="display: none;">
+          <button class="rotate-button left" id="rotateLeftButton">
+            <span>&#8634;</span>
+          </button>
+          <button class="rotate-button right" id="rotateRightButton">
+            <span>&#8635;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="vertical-rectangle-container">
+      <div class="vertical-rectangle" id="miniaturas-container">
+        <!-- As miniaturas serão carregadas dinamicamente do banco de dados -->
+      </div>
+    </div>
+
+    <div class="new-rectangle">
+      <div class="square">
+        <h3>Calculo do frete</h3>
+        <input type="text" id="cep" placeholder="Insira seu CEP">
+        <button id="calcular-frete">Calcule seu frete</button>
+        <div id="retangulo-resultado">
+          <p id="resultado-frete"></p>
+        </div>
+      </div>
+
+
+
+      <div class="square">
+        <div class="total-sum">
+          <span>Total: R$ <span id="total-sum">0.00</span></span>
+        </div>
+      </div>
+
+      <div class="square">
+        <div class="total-sum">
+          <span>Total Geral: R$ <span id="total-geral" class="total-value">0.00</span></span>
+        </div>
+      </div>
+
+      <!-- Botão para baixar imagem -->
+      <div class="baixarImagemButtonContainer">
+        <button id="baixarImagemButton">Baixar Imagem</button>
+      </div>
+
+      <!-- Novo botão de pagamento -->
+      <div class="finalizarComraButton">
+        <button id="finalizarComraButton" onclick="window.location.href='../Pagamento/pagamento.html'">Finalizar pagamento</button>
+      </div>
+
+      <canvas id="canvas" style="display: none;"></canvas>
+    </div>
+  </div>
+
+  <div class="bottom-rectangle">
+    <!-- Conteúdo do retângulo branco pode ser adicionado aqui -->
+  </div>
+
+  <script src="script2.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+# Ignora a pasta node_modules (onde as dependências são instaladas)
+node_modules/
+
+# Ignora o arquivo .env com as variáveis de ambiente (como o token do Mercado Pago)
+.env
+
+# Ignora o diretório de logs (se houver)
+logs/
+
+# Ignora os arquivos de compilação (caso você use alguma ferramenta de build)
+dist/
+
+# Ignora o arquivo do sistema de operação, caso seja criado
+.DS_Store

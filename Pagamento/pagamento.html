@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Pagamento</title>
+  <link rel="shortcut icon" href="img/icon2.ico">
+  <link rel="stylesheet" href="pagamento.css"> <!-- Arquivo CSS externo -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+  <div class="top-rectangle">
+    <img src="img/logo1.png" alt="Logo" class="logo-left">
+    <h1 class="top-text">Projete o espaço para seu gato</h1>
+  </div>
+  <div class="menu">
+    <a href="../Menu/Quem somos/quemSomos.html"> Quem somos </a>
+    <a href="../Menu/Tutoriais/tutoriais.html"> Tutoriais </a>
+    <a href="../Menu/Contato/contato.html"> Contato </a>
+    <a href="../pagina2/pagina2.html"> Voltar </a>
+    <a href="../index.html"> Início </a>
+  </div>
+
+  <div class="payment-container">
+    <h1>Finalize seu Pagamento</h1>
+    
+    <!-- Container para a imagem do usuário -->
+    <div id="user-image-preview" class="user-image-preview"></div>
+    
+    <!-- Container para exibir as miniaturas adicionadas -->
+    <div id="miniaturas-adicionadas" class="miniaturas-adicionadas">
+      <!-- O conteúdo do bottomRectangle será carregado aqui -->
+    </div>
+    
+    <form id="payment-form">
+      <div class="price-info">
+        <h3>Valor Total:</h3>
+        <p>R$ <span id="total-geral">100.00</span></p>
+      </div>
+
+      <label for="payment-method">Método de Pagamento:</label>
+      <select id="payment-method">
+        <option value="credit-card">Cartão de Crédito</option>
+        <option value="pix">PIX</option>
+      </select>
+
+      <div id="credit-card-fields" class="hidden">
+        <!-- Campos de cartão de crédito serão inseridos aqui -->
+      </div>
+
+      <button type="submit" id="credit-card-button" class="credit-card-button hidden">Pagar com Cartão de Crédito</button>
+
+      <div id="pix-fields" class="hidden">
+        <p>Pagamento via PIX: Preencha os dados abaixo</p>
+        
+        <label for="pix-name">Nome Completo:</label>
+        <input type="text" id="pix-name" name="pix-name" placeholder="Digite seu nome completo" required>
+        
+        <label for="pix-cpf">CPF:</label>
+        <input type="text" id="pix-cpf" name="pix-cpf" placeholder="123.456.789-00" required>
+        
+        <label for="pix-email">E-mail:</label>
+        <input type="email" id="pix-email" name="pix-email" placeholder="seu@email.com" required>
+        
+        <label for="pix-telefone">Telefone:</label>
+        <input type="tel" id="pix-telefone" name="pix-telefone" placeholder="(00) 00000-0000" required>
+        
+        <div class="address-section">
+          <h3>Endereço de Entrega</h3>
+          
+          <div class="cep-container">
+            <label for="cep">CEP:</label>
+            <div class="cep-input-group">
+              <input type="text" id="cep" name="cep" placeholder="00000-000" maxlength="9">
+              <button type="button" id="buscar-cep" class="buscar-cep-button">Buscar</button>
+            </div>
+          </div>
+          
+          <label for="rua">Rua:</label>
+          <input type="text" id="rua" name="rua" placeholder="Rua" readonly>
+          
+          <label for="numero">Número:</label>
+          <input type="text" id="numero" name="numero" placeholder="Número">
+          
+          <label for="complemento">Complemento:</label>
+          <input type="text" id="complemento" name="complemento" placeholder="Complemento (opcional)">
+          
+          <label for="bairro">Bairro:</label>
+          <input type="text" id="bairro" name="bairro" placeholder="Bairro" readonly>
+          
+          <label for="cidade">Cidade:</label>
+          <input type="text" id="cidade" name="cidade" placeholder="Cidade" readonly>
+          
+          <label for="estado">Estado:</label>
+          <input type="text" id="estado" name="estado" placeholder="Estado" readonly>
+        </div>
+        
+        <div id="qr-code-container"></div>
+        <button type="button" onclick="processPixPayment()" class="pix-button">Gerar QR Code PIX</button>
+      </div>
+
+      <div id="message" class="message-container"></div>
+    </form>
+  </div>
+
+  <!-- Scripts do Mercado Pago -->
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+  <script src="pagamento.js"></script> <!-- Arquivo JavaScript externo -->
+</body>
+
+</html>

@@ -1,0 +1,245 @@
+/* Importação da fonte League Gothic */
+@font-face {
+  font-family: "League Gothic"; /* Nome da fonte */
+  src: url("fonts/Letters\ for\ Learners.ttf") format("truetype"); /* Caminho da fonte */
+}
+
+/* Estilo básico do body */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #e8d674;
+  padding: 0;
+  justify-content: flex-start;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 10px; /* Remover margens padrão */
+}
+
+/* Estilo do topo (retângulo superior) */
+.top-rectangle {
+  background-color: #ffffff;
+  width: 1500px; /* Largura total */
+  height: 200px; /* Altura desejada */
+  display: flex;
+  align-items: center; /* Centraliza verticalmente o conteúdo */
+  justify-content: space-between; /* Espaço entre os elementos */
+  /*padding: 0 20px; /* Padding horizontal para espaçamento interno */
+  position: relative;
+  margin-bottom: 5px;
+  border: 3px solid #000000; /* Temporário para depuração */
+}
+
+/* Estilo para a logo */
+.top-rectangle img {
+  height: 200px; /* Altura da logo */
+}
+
+/* Logo do lado esquerdo */
+.logo-left {
+  margin-right: 40px; /* Espaçamento entre a logo esquerda e o texto */
+}
+
+/* Texto no top-rectangle */
+.top-text {
+  font-family: "League Gothic", sans-serif; /* Aplica a fonte personalizada */
+  font-size: 95px; /* Tamanho do texto aumentado */
+  color: #242659; /* Cor do texto */
+  position: absolute; /* Posicionamento absoluto */
+  left: 20%; /* Ajusta a posição horizontal */
+  top: 20%; /* Centraliza verticalmente */
+  transform: translateY(-50%); /* Ajuste fino para centralização */
+}
+
+div.menu {
+  width: 1500px;
+  background-color: rgb(255, 255, 255);
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 3px solid #000000; /* Temporário para depuração */
+  overflow: hidden;
+}
+
+div.menu a {
+  font-family: "League Gothic", sans-serif; /* Aplica a fonte personalizada */
+  font-size: 40px; /* Tamanho do texto aumentado */
+  color: #242659;
+  padding: 2px 187px;
+  float: left;
+  text-decoration: none;
+}
+
+div.menu a:hover {
+  background-color: #f1e911;
+}
+
+div.quemSomos {
+  width: 1500px;
+  height: 1000px;
+  background-color: rgb(255, 255, 255);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 3px solid #000000;
+  overflow: hidden;
+}
+
+div.quemSomos a {
+  font-family: "League Gothic", sans-serif; /* Aplica a fonte personalizada */
+  font-size: 40px; /* Tamanho do texto aumentado */
+  color: #242659;
+  margin-top: 10px;
+  margin-left: 250px;
+  padding: 2px 187px;
+  float: left;
+  text-decoration: none;
+}
+
+div.fotoQuemSomos {
+  width: 400px;
+  height: 400px;
+  background-color: rgb(33, 172, 231);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  border: 3px solid #000000; /* Temporário para depuração */
+}
+
+/* Media Queries para Responsividade */
+
+/* Celular (Mobile) */
+@media (max-width: 480px) {
+  body {
+    margin: 5px;
+  }
+
+  .top-rectangle {
+    width: 95%;
+    height: auto;
+    min-height: 100px;
+    padding: 10px 0;
+  }
+
+  .top-text {
+    font-size: 2rem;
+    left: 35%;
+    top: 50%;
+    width: 60%;
+    text-align: center;
+  }
+
+  .cart-icon {
+    width: 40px;
+    right: 10px;
+  }
+
+  .top-rectangle img {
+    height: 80px;
+  }
+
+  div.menu {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  div.menu a {
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  div.quemSomos {
+    width: 95%;
+    height: auto;
+    padding: 10px;
+  }
+
+  div.quemSomos a {
+    font-size: 1.5rem;
+    margin-left: 0;
+    padding: 10px;
+    float: none;
+    text-align: center;
+  }
+
+  div.fotoQuemSomos {
+    width: 90%;
+    height: 250px;
+    margin: 10px auto;
+  }
+}
+
+/* Tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    margin: 8px;
+  }
+
+  .top-rectangle {
+    width: 95%;
+    height: auto;
+    min-height: 150px;
+  }
+
+  .top-text {
+    font-size: 3rem;
+    left: 30%;
+    width: 65%;
+  }
+
+  .cart-icon {
+    width: 60px;
+    right: 15px;
+  }
+
+  .top-rectangle img {
+    height: 120px;
+  }
+
+  div.menu {
+    width: 95%;
+  }
+
+  div.menu a {
+    padding: 10px 80px;
+    font-size: 2rem;
+  }
+
+  div.quemSomos {
+    width: 95%;
+    height: auto;
+    padding: 15px;
+  }
+
+  div.quemSomos a {
+    font-size: 2rem;
+    margin-left: 50px;
+    padding: 15px;
+  }
+
+  div.fotoQuemSomos {
+    width: 350px;
+    height: 350px;
+    margin: 15px auto;
+  }
+}
+
+/* Para desktops e notebooks grandes */
+@media (min-width: 1025px) {
+  .vertical-rectangle {
+    width: 180px; /* Largura fixa para desktops */
+  }
+
+  .cart-icon {
+    width: 60px; /* Reduz o tamanho do ícone do carrinho */
+    right: 15px; /* Ajusta a posição */
+  }
+
+  .top-rectangle {
+    height: 200px; /* Ajuste a altura para desktops */
+  }
+}

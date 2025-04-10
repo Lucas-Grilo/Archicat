@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArchiCat</title>
+
+  <!-- Definindo o favicon -->
+  <link rel="shortcut icon" href="img/icon2.ico">
+
+  <link rel="stylesheet" href="style.css"> <!-- Link para o arquivo CSS -->
+  <script src="server-launcher.js"></script> <!-- Script para iniciar o servidor automaticamente -->
+</head>
+
+<body>
+  <div class="top-rectangle">
+    <img src="img/logo1.png" alt="Logo" class="logo-left">
+    <h1 class="top-text">Projete o espaço para seu gato</h1>
+  </div>
+  <div class="menu">
+    <a href="Menu/Quem somos/quemSomos.html"> Quem somos </a>
+    <a href="Menu/Tutoriais/tutoriais.html"> Tutoriais </a>
+    <a href="Menu/Contato/contato.html"> Contato </a>
+  </div>
+
+
+  <div class="cat-project-button">
+    <!-- Botão para redirecionar -->
+    <button class="cat-project-button" onclick="window.location.href='pagina2/pagina2.html'">Click para fazer o projeto do seu gato</button>
+  </div>
+
+  <div class="container">
+    <div class="image-container">
+      <!-- Apenas uma imagem é exibida por vez -->
+      <img id="current-image" src="img/imagem1.png" alt="Imagem 1">
+      <!-- Botões de navegação -->
+      <button class="nav-button left" onclick="prevImage()">&#10094;</button>
+      <button class="nav-button right" onclick="nextImage()">&#10095;</button>
+    </div>
+
+    <script src="script.js"></script> <!-- Link para o arquivo JavaScript -->
+</body>
+
+</html>

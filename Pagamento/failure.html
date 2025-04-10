@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erro no Pagamento</title>
+  <link rel="shortcut icon" href="img/icon2.ico">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #e8d674;
+    }
+    .error-container {
+      text-align: center;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .error-message {
+      color: #dc3545;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .back-button {
+      background-color: #242659;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 1rem;
+      margin-top: 1rem;
+      display: inline-block;
+    }
+    .back-button:hover {
+      background-color: #1a1b40;
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    <h1 class="error-message">Erro no Pagamento</h1>
+    <p>Desculpe, não foi possível processar seu pagamento no momento.</p>
+    <p>Por favor, tente novamente ou entre em contato com nosso suporte.</p>
+    <a href="pagamento.html" class="back-button">Tentar Novamente</a>
+    <a href="../index.html" class="back-button">Voltar para a Página Inicial</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,369 @@
+/* Importação da fonte League Gothic */
+@font-face {
+  font-family: "League Gothic"; /* Nome da fonte */
+  src: url("fonts/Letters\ for\ Learners.ttf") format("truetype"); /* Caminho da fonte */
+}
+
+/* Estilos gerais */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #e8d674;
+  padding: 0;
+  justify-content: flex-start;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 10px; /* Remover margens padrão */
+}
+
+/* Estilo do topo (retângulo superior) */
+.top-rectangle {
+  background-color: #ffffff;
+  width: 1500px; /* Largura total */
+  height: 200px; /* Altura desejada */
+  display: flex;
+  align-items: center; /* Centraliza verticalmente o conteúdo */
+  justify-content: space-between; /* Espaço entre os elementos */
+  position: relative;
+  margin-bottom: 5px;
+  border: 3px solid #000000; /* Temporário para depuração */
+}
+
+/* Estilo para a logo */
+.top-rectangle img {
+  height: 200px; /* Altura da logo */
+}
+
+/* Logo do lado esquerdo */
+.logo-left {
+  margin-right: 40px; /* Espaçamento entre a logo esquerda e o texto */
+}
+
+/* Texto no top-rectangle */
+.top-text {
+  font-family: "League Gothic", sans-serif; /* Aplica a fonte personalizada */
+  font-size: 95px; /* Tamanho do texto aumentado */
+  color: #242659; /* Cor do texto */
+  position: absolute; /* Posicionamento absoluto */
+  left: 20%; /* Ajusta a posição horizontal */
+  top: 20%; /* Centraliza verticalmente */
+  transform: translateY(-50%); /* Ajuste fino para centralização */
+}
+
+/* Menu */
+div.menu {
+  width: 1500px;
+  background-color: rgb(255, 255, 255);
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 3px solid #000000; /* Temporário para depuração */
+  overflow: hidden;
+}
+
+div.menu a {
+  font-family: "League Gothic", sans-serif; /* Aplica a fonte personalizada */
+  font-size: 40px; /* Tamanho do texto aumentado */
+  color: #242659;
+  padding: 2px 97px;
+  float: left;
+  text-decoration: none;
+}
+
+div.menu a:hover {
+  background-color: #f1e911;
+}
+
+/* Container Principal */
+.container {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  height: calc(80vh - 100px);
+  position: relative;
+  background-color: #cac6c6;
+}
+
+/* Estilo do container de pagamento */
+.payment-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 45px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para o container da imagem do usuário */
+.user-image-container {
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.user-image-container h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #242659;
+}
+
+.user-image-preview {
+  display: block;
+  text-align: center;
+  min-height: 200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.user-image-preview img {
+  max-width: 80%; /* Aumentado para 80% do tamanho original */
+  height: auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+}
+
+.thumbnail-info {
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #e9f7fe;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #0066cc;
+  text-align: center;
+  width: 100%;
+}
+
+/* Campos ocultos */
+.hidden {
+  display: none;
+}
+
+/* Estilo para imagens no PIX */
+#pix-fields img {
+  max-width: 250px;
+  height: auto;
+  display: block;
+  margin: 15px auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Estilo para o container do QR Code */
+#qr-code-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Estilo para o campo de texto do código PIX */
+.pix-code {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: monospace;
+  resize: none;
+  height: 60px;
+}
+
+/* Link de pagamento PIX */
+.pix-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #009ee3;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.pix-link:hover {
+  background-color: #007bb5;
+}
+
+/* Botões */
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #009ee3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+button:hover {
+  background-color: #007bb5;
+}
+
+/* Estilo específico para o botão de cartão de crédito */
+.credit-card-button {
+  background-color: #4CAF50;
+  margin-top: 15px;
+}
+
+.credit-card-button:hover {
+  background-color: #45a049;
+}
+
+/* Estilos específicos para o formulário de pagamento */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Estilo para a mensagem */
+.message-container {
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  min-height: 20px;
+}
+
+/* Estilo para a informação de preço */
+.price-info {
+  background-color: #f0f8ff;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border-left: 4px solid #009ee3;
+}
+
+.price-info h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.price-info p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #009ee3;
+  margin: 0;
+}
+
+#pix-fields {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+#pix-fields p {
+  margin: 0;
+  color: #555;
+}
+
+/* Estilos para a seção de endereço */
+.address-section {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.address-section h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 18px;
+}
+
+/* Estilo para o container do CEP com botão */
+.cep-container {
+  margin-bottom: 15px;
+}
+
+.cep-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.cep-input-group input {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.buscar-cep-button {
+  width: auto;
+  padding: 10px 15px;
+  margin-bottom: 0;
+  background-color: #4CAF50;
+}
+
+.buscar-cep-button:hover {
+  background-color: #45a049;
+}
+
+/* Estilo para campos somente leitura */
+input[readonly] {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+/* Estilo para o container de miniaturas adicionadas */
+.miniaturas-adicionadas {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.miniaturas-adicionadas h3 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.miniaturas-adicionadas ul {
+  list-style-type: none;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.miniaturas-adicionadas li {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.miniaturas-adicionadas li:last-child {
+  border-bottom: none;
+}
