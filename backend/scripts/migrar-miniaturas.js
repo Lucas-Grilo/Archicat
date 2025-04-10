@@ -64,7 +64,7 @@ async function migrarMiniaturas() {
     // Aguardar a inicialização do banco de dados
     setTimeout(async () => {
       try {
-        // Popular o banco de dados com as miniaturas extraídas
+        // Preencher o banco de dados com as miniaturas extraídas
         await miniaturaModel.popularMiniaturas(miniaturas);
         console.log('Migração concluída com sucesso!');
       } catch (error) {

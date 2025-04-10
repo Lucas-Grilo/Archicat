@@ -16,13 +16,13 @@ async function inserirMiniaturas() {
     // Lista de miniaturas para inserir
     const miniaturas = [
       { nome: 'Imagem 1', imagem_path: 'img/thumb1.png', preco: 1.00 },
-      { nome: 'Imagem 2', imagem_path: 'img/thumb2.png', preco: 11.12 }, // Reduzido em 5% (de 11.70)
-      { nome: 'Imagem 3', imagem_path: 'img/thumb3.png', preco: 22.23 }, // Reduzido em 5% (de 23.40)
+      { nome: 'Imagem 2', imagem_path: 'img/thumb2.png', preco: 11.12 }, 
+      { nome: 'Imagem 3', imagem_path: 'img/thumb3.png', preco: 22.23 },
       { nome: 'Imagem 4', imagem_path: 'img/thumb4.png', preco: 31.20 },
       { nome: 'Imagem 5', imagem_path: 'img/thumb5.png', preco: 31.20 },
       { nome: 'Imagem 6', imagem_path: 'img/thumb6.png', preco: 31.20 },
       { nome: 'Imagem 8', imagem_path: 'img/thumb8.png', preco: 135.00 },
-      { nome: 'Imagem 9', imagem_path: 'img/thumb9.png', preco: 43.70 }, // Reduzido em 5% (de 46.00)
+      { nome: 'Imagem 9', imagem_path: 'img/thumb9.png', preco: 43.70 }, 
       { nome: 'Imagem 10', imagem_path: 'img/thumb10.png', preco: 0 },
     ];
     
