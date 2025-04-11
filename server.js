@@ -33,9 +33,9 @@ const app = express();
 
 // Middlewares
 const corsOptions = {
-  origin: ['https://www.archicat.com.br', 'http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: ['https://www.archicat.com.br', 'http://www.archicat.com.br', 'http://archicat.com.br', 'https://archicat.com.br', 'http://localhost:3000', 'http://127.0.0.1:3000', 'https://archicat-backend.onrender.com'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With', 'Accept', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Methods', 'Access-Control-Allow-Headers'],
   exposedHeaders: ['Access-Control-Allow-Origin'],
   credentials: true,
   preflightContinue: false,

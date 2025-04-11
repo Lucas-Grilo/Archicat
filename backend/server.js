@@ -32,12 +32,20 @@ console.log('MERCADO_PAGO_ACCESS_TOKEN definido:', process.env.MERCADO_PAGO_ACCE
 const app = express();
 
 // Middlewares
-app.use(cors({
-    origin: ['https://www.archicat.com.br', 'http://www.archicat.com.br', 'http://archicat.com.br', 'https://archicat.com.br', 'http://localhost:3000', 'http://127.0.0.1:3000'],
+const corsOptions = {
+    origin: ['https://www.archicat.com.br', 'http://www.archicat.com.br', 'http://archicat.com.br', 'https://archicat.com.br', 'http://localhost:3000', 'http://127.0.0.1:3000', 'https://archicat-backend.onrender.com'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-}));
+    allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With', 'Accept', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Methods', 'Access-Control-Allow-Headers'],
+    exposedHeaders: ['Access-Control-Allow-Origin'],
+    credentials: true,
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
+
+// Middleware para lidar com preflight requests OPTIONS
+app.options('*', cors(corsOptions));
 app.use(express.json({limit: '50mb'}));
 
 // Configurar para servir arquivos estáticos
