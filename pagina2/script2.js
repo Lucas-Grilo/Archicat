@@ -178,9 +178,10 @@ function loadBackgroundImageFromCache() {
       lixoImage.style.display = "inline-block";
       document.querySelector(".rotate-buttons-container").style.display = "flex";
       
-      // Remover mensagem informativa se existir
-      const mensagem = document.querySelector('.miniatura-mensagem');
-      if (mensagem) mensagem.remove();
+      // Não precisamos mais remover mensagens informativas, pois não as adicionamos mais
+      // Mantemos o código comentado para referência
+      // const mensagem = document.querySelector('.miniatura-mensagem');
+      // if (mensagem) mensagem.remove();
       
       return true;
     }
@@ -220,9 +221,10 @@ inputImage.addEventListener("change", function () {
       lixoImage.style.display = "inline-block";
       document.querySelector(".rotate-buttons-container").style.display = "flex";
       
-      // Remover mensagem informativa se existir
-      const mensagem = document.querySelector('.miniatura-mensagem');
-      if (mensagem) mensagem.remove();
+      // Não precisamos mais remover mensagens informativas, pois não as adicionamos mais
+      // Mantemos o código comentado para referência
+      // const mensagem = document.querySelector('.miniatura-mensagem');
+      // if (mensagem) mensagem.remove();
       
       // Salvar a imagem no cache
       saveBackgroundImageToCache(imageDataUrl);
@@ -849,8 +851,8 @@ async function renderizarMiniaturas() {
     return;
   }
   
-  // Limpar o container antes de adicionar novas miniaturas
-  miniaturasContainer.innerHTML = '<div class="miniatura-mensagem">Carregando miniaturas...</div>';
+  // Não exibimos mais mensagens de carregamento dentro do retângulo das miniaturas
+  miniaturasContainer.innerHTML = '';
   
   try {
     console.log('Iniciando renderização de miniaturas...');
@@ -861,10 +863,9 @@ async function renderizarMiniaturas() {
     // Limpar a mensagem de carregamento
     miniaturasContainer.innerHTML = '';
     
-    // Se não houver miniaturas, mostrar mensagem informativa
+    // Se não houver miniaturas, apenas registramos no console, sem mostrar mensagem no retângulo
     if (!miniaturas || miniaturas.length === 0) {
       console.warn('Nenhuma miniatura encontrada para renderizar');
-      miniaturasContainer.innerHTML = '<div class="miniatura-mensagem">Não foi possível carregar as miniaturas. Verifique se o servidor está em execução.</div>';
       return;
     }
     
@@ -1043,7 +1044,8 @@ async function renderizarMiniaturas() {
     
   } catch (error) {
     console.error('Erro ao renderizar miniaturas:', error);
-    miniaturasContainer.innerHTML = `<div class="miniatura-mensagem">Erro ao carregar miniaturas: ${error.message}</div>`;
+    // Não exibimos mensagens de erro no contêiner de miniaturas, mantendo-o vazio
+    miniaturasContainer.innerHTML = '';
   }
 }
 

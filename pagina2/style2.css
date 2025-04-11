@@ -254,48 +254,26 @@ div.contato h2 {
   font-size: 12px;
 }
 
-/* Estilos para mensagens de erro */
+/* Estilos para mensagens de erro - ocultados dentro do retângulo das miniaturas */
 .miniatura-erro {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-  background-color: #ffeeee;
-  border-radius: 5px;
-  margin: 10px 0;
-  text-align: center;
+  display: none !important; /* Oculta completamente as mensagens de erro */
 }
 
 .miniatura-erro p {
-  color: #d32f2f;
-  margin-bottom: 10px;
+  display: none !important;
 }
 
 .miniatura-erro button {
-  background-color: #242659;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
+  display: none !important;
 }
 
 .miniatura-erro button:hover {
-  background-color: #1a1c40;
+  display: none !important;
 }
 
-/* Estilos para mensagem informativa */
+/* Estilos para mensagem informativa - ocultada dentro do retângulo das miniaturas */
 .miniatura-mensagem {
-  background-color: #e8f4ff;
-  color: #0056b3;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  text-align: center;
-  font-size: 12px;
-  width: 90%;
+  display: none !important; /* Oculta completamente as mensagens informativas */
 }
 
 /* Estilo comum para todas as miniaturas no retângulo vertical */
