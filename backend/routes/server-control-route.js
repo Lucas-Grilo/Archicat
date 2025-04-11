@@ -11,8 +11,13 @@ const corsOptions = {
   origin: ['https://www.archicat.com.br', 'http://localhost:3000', 'http://127.0.0.1:3000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  credentials: true,
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 };
+
+// Aplicar CORS em todas as rotas deste router
+router.use(cors(corsOptions));
 
 // Middleware para lidar com preflight requests OPTIONS
 router.options('*', cors(corsOptions));
@@ -25,7 +30,7 @@ const rootDir = path.resolve(__dirname, '..', '..');
  * Rota para iniciar o servidor
  * Esta rota executa o script iniciar-servidor.bat
  */
-router.post('/iniciar-servidor', cors(corsOptions), (req, res) => {
+router.post('/iniciar-servidor', (req, res) => {
     console.log('Recebida solicitação para iniciar o servidor');
     
     // Caminho para o script de inicialização
@@ -46,7 +51,7 @@ router.post('/iniciar-servidor', cors(corsOptions), (req, res) => {
  * Rota para reiniciar o servidor e limpar o cache
  * Esta rota executa o script reiniciar-servidor-completo.bat
  */
-router.post('/reiniciar-servidor', cors(corsOptions), (req, res) => {
+router.post('/reiniciar-servidor', (req, res) => {
     console.log('Recebida solicitação para reiniciar o servidor e limpar cache');
     
     // Caminho para o script de reinicialização

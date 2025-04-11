@@ -19,8 +19,11 @@ async function iniciarServidor() {
         const response = await fetch(`${getServerUrl()}/iniciar-servidor`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+                'Origin': window.location.origin
+            },
+            mode: 'cors',
+            credentials: 'include'
         });
         
         const data = await response.json();
