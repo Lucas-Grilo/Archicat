@@ -2,8 +2,21 @@ import express from 'express';
 import { exec } from 'child_process';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import cors from 'cors';
 
 const router = express.Router();
+
+// Configuração CORS específica para as rotas de controle do servidor
+const corsOptions = {
+  origin: ['https://www.archicat.com.br', 'http://localhost:3000', 'http://127.0.0.1:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
+
+// Middleware para lidar com preflight requests OPTIONS
+router.options('*', cors(corsOptions));
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..', '..');
@@ -12,7 +25,7 @@ const rootDir = path.resolve(__dirname, '..', '..');
  * Rota para iniciar o servidor
  * Esta rota executa o script iniciar-servidor.bat
  */
-router.post('/iniciar-servidor', (req, res) => {
+router.post('/iniciar-servidor', cors(corsOptions), (req, res) => {
     console.log('Recebida solicitação para iniciar o servidor');
     
     // Caminho para o script de inicialização
@@ -33,7 +46,7 @@ router.post('/iniciar-servidor', (req, res) => {
  * Rota para reiniciar o servidor e limpar o cache
  * Esta rota executa o script reiniciar-servidor-completo.bat
  */
-router.post('/reiniciar-servidor', (req, res) => {
+router.post('/reiniciar-servidor', cors(corsOptions), (req, res) => {
     console.log('Recebida solicitação para reiniciar o servidor e limpar cache');
     
     // Caminho para o script de reinicialização

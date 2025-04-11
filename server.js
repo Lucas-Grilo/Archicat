@@ -32,7 +32,15 @@ console.log('MERCADO_PAGO_ACCESS_TOKEN definido:', process.env.MERCADO_PAGO_ACCE
 const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: ['https://www.archicat.com.br', 'http://localhost:3000', 'http://127.0.0.1:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
+
+// Middleware para lidar com preflight requests OPTIONS
+app.options('*', cors());
 app.use(express.json({limit: '50mb'}));
 
 // Configurar para servir arquivos estáticos
